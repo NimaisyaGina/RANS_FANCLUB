@@ -32,7 +32,7 @@ PRODUCTION = os.getenv('PRODUCTION', 'False').lower() == 'true'
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "nimaisya-gina-RANSFANCLUB.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "nimaisya-gina-ransfanclub.pbp.cs.ui.ac.id"]
 
 
 
