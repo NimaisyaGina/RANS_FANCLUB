@@ -12,7 +12,20 @@
     <button>+ Add Product</button>
 </a>
 
+<a href="{% url 'main:logout' %}">
+  <button>Logout</button>
+</a>
+
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+
 <hr>
+
+<a href="?filter=all">
+    <button type="button">All Products</button>
+</a>
+<a href="?filter=my">
+    <button type="button">My Products</button>
+</a> 
 
 {% if not products %}
     <p>Belum ada produk.</p>
@@ -23,7 +36,10 @@
             <p>Harga: Rp {{ product.price }}</p>
             <p>Kategori: {{ product.category }}</p>
             <p>{{ product.description }}</p>
-            <p>Featured: {{ product.is_featured }}</p>
+            {% if product.is_featured %}
+                <p><b>Featured</b></p>
+            {% endif %}
+
             <img src="{{ product.thumbnail }}" alt="{{ product.name }}" width="150">
 
             <p>

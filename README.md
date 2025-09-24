@@ -42,3 +42,35 @@ Secara keseluruhan, untuk mengimplementasikan checklist yang ada, saya menggunak
 
 7) Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
 --> https://drive.google.com/drive/folders/1af0-Q8gaL7uNZWjqOzZ3ivhPJTCbaYkC?usp=share_link
+
+
+Tugas 4
+1.  Apa itu Django AuthenticationForm? Jelaskan juga kelebihan dan kekurangannya.
+--> AuthenticationForm merupakan form bawaan yang berfungsi untuk menangani proses login pengguna. Dengan adanya form ini, kita tidak perlu lagi membuat form login dari awal karena sudah langsung terhubung dengan sistem autentikasi Django. Kelebihan dari AuthenticationForm adalah praktis digunakan, aman karena memanfaatkan hashing password bawaan Django, dan mudah untuk dikustomisasi sesuai kebutuhan. Namun, kekurangannya adalah kurang fleksibel jika aplikasi memiliki kebutuhan autentikasi yang lebih kompleks, misalnya login menggunakan nomor telepon atau OTP, serta tampilannya masih sederhana sehingga biasanya memerlukan penyesuaian desain agar sesuai dengan front-end aplikasi
+
+2.  Apa perbedaan antara autentikasi dan otorisasi? Bagaiamana Django mengimplementasikan kedua konsep tersebut?
+--> Autentikasi (authentication) adalah proses untuk memastikan identitas pengguna yang sedang login, misalnya memverifikasi apakah username dan password cocok dengan data yang tersimpan di database. Sedangkan otorisasi (authorization) adalah proses menentukan hak akses pengguna setelah berhasil login, seperti apakah user tersebut hanya bisa membaca data atau juga bisa menambah, mengedit, bahkan menghapus data. Django mengimplementasikan keduanya melalui sistem bawaan django.contrib.auth, di mana autentikasi ditangani dengan fungsi login/logout serta model User, sementara otorisasi diatur dengan sistem permission dan groups yang bisa dihubungkan dengan masing-masing user
+
+3.  Apa saja kelebihan dan kekurangan session dan cookies dalam konteks menyimpan state di aplikasi web?
+--> #Kelebihan Session:
+* Data tidak disimpan langsung di browser, melainkan di server, sehingga lebih aman
+Bisa menyimpan data lebih banyak tanpa membebani browser
+
+#Kekurangan Session:
+*Membebani server karena data user disimpan di sisi server.
+*Membutuhkan manajemen ekstra jika aplikasi memiliki banyak pengguna.
+
+#Kelebihan Cookies
+* Disimpan di browser user, sehingga tidak membebani server.
+* Dapat digunakan untuk menyimpan preferensi user (misalnya bahasa, tema).
+
+#Kekurangan Cookies
+* Rentan terhadap pencurian data (misalnya serangan XSS).
+* Kapasitas penyimpanan terbatas.
+
+4.  Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai? Bagaimana Django menangani hal tersebut?
+--> Penggunaan cookies tidak sepenuhnya aman karena data yang tersimpan bisa dicuri oleh pihak ketiga, misalnya melalui serangan XSS. Untuk mengurangi risiko ini, Django menyediakan pengaturan keamanan bawaan seperti SESSION_COOKIE_HTTPONLY untuk mencegah akses cookies melalui JavaScript, SESSION_COOKIE_SECURE agar cookies hanya dikirim lewat HTTPS, serta mekanisme CSRF token yang melindungi form dari serangan CSRF. Dengan kombinasi pengaturan ini, penggunaan cookies dalam Django dapat dibuat lebih aman
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+--> Dalam menyelesaikan checklist yang diberikan, saya tidak hanya sekadar mengikuti instruksi dari tutorial, tetapi juga melengkapinya dengan penelusuran tambahan melalui dokumentasi resmi Django maupun referensi lainnya. Hal ini saya lakukan agar setiap proses, mulai dari pembuatan fitur registrasi, login, dan logout, penambahan akun dengan dummy data, penghubungan model Product dengan User, hingga penerapan session dan cookie* seperti last_login, dapat saya pahami secara menyeluruh. Dengan begitu, setiap langkah yang saya kerjakan tidak hanya bersifat meniru, melainkan benar-benar didasari pemahaman mengenai konsep yang melatarbelakanginya. Pendekatan ini membuat saya lebih mandiri dalam menyelesaikan checklist sekaligus lebih siap menghadapi variasi kasus serupa di luar contoh tutorial
+
