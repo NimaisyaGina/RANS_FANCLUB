@@ -1,0 +1,86 @@
+<article class="bg-pink-200 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow duration-300 overflow-hidden relative">
+  
+  <!-- Price at the top-right corner -->
+  <div class="absolute top-3 right-3 z-10 text-black bg-blue-200 px-3 py-1 text-sm font-semibold">
+    Rp. {{ product.price }}
+  </div>
+
+   <div class="relative w-full h-60">
+    <!-- Gradient Shadow Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/10 to-black/50 rounded-t-lg"></div> 
+
+    {% if product.thumbnail %}
+      <img src="{{ product.thumbnail }}" alt="{{ product.title }}" class="w-full h-full object-cover rounded-t-lg">
+    {% else %}
+      <div class="w-full h-full bg-gray-200 rounded-t-lg"></div>
+    {% endif %}
+  </div>
+
+
+  <!-- Featured Status -->
+  <div class="absolute top-3 left-3 z-10">
+    {% if product.is_featured %}
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-yellow-100 text-yellow-800">
+        Featured
+      </span>
+    {% endif %}
+  </div>
+
+  <!-- Product Name and Description -->
+  <div class="p-5">
+    <h3 class="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+      {{ product.name }}
+    </h3>
+
+    <p class="text-gray-600 text-sm mb-4">
+      {{ product.description|truncatewords:20 }}
+    </p>
+
+    <!-- Category Tags -->
+  <div class="flex justify-center items-center mb-6">
+      <span class="text-xl bg-green-500 text-white px-4 py-2 rounded-full font-semibold">
+        {{ product.get_category_display }}
+      </span>
+    </div>
+
+    <div class="p-5">
+    <div class="flex items-center text-sm text-gray-500 mb-3">
+      <time datetime="{{ product.created_at|date:'c' }}">
+        {{ product.created_at|date:"M j, Y" }}
+      </time>
+      <span class="mx-2">•</span>
+      <span>{{ product.product_views }} views</span>
+    </div>
+
+    <h3 class="text-lg font-semibold text-gray-900 mb-3 line-clamp-2 leading-tight">
+      <a href="{% url 'main:show_product' product.id %}" class="hover:text-green-600 transition-colors">
+        {{ product.title }}
+      </a>
+    </h3>
+
+  
+
+    {% if user.is_authenticated and product.user == user %}
+      <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+        <a href="{% url 'main:show_product' product.id %}" class="text-green-600 hover:text-green-700 font-medium text-sm transition-colors">
+          Read more
+        </a>
+        <div class="flex space-x-2">
+          <a href="{% url 'main:edit_products' product.id %}" class="text-gray-600 hover:text-gray-700 text-sm transition-colors">
+            Edit
+          </a>
+          <a href="{% url 'main:delete_products' product.id %}" class="text-red-600 hover:text-red-700 text-sm transition-colors">
+            Delete
+          </a>
+        </div>
+      </div>
+    {% else %}
+      <div class="pt-4 border-t border-gray-100">
+        <a href="{% url 'main:show_product' product.id %}" class="text-green-600 hover:text-green-700 font-medium text-sm transition-colors">
+          Read more →
+        </a>
+      </div>
+    {% endif %}
+  </div>
+
+</article>

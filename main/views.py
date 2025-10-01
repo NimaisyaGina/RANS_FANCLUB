@@ -17,15 +17,15 @@ def show_main(request):
     filter_type = request.GET.get("filter", "all")
 
     if filter_type == "all":
-        products = Product.objects.all()
+        product_list = Product.objects.all()
     else:
-        products = Product.objects.filter(user=request.user)
+        product_list = Product.objects.filter(user=request.user)
     
     context = {
         'app_name' : 'Rans Fan Club',
         'nama': request.user.username,
         'kelas': 'PBP C',
-        'products': products,
+        'product_list': product_list,
         'last_login': request.COOKIES.get('last_login', 'Never')
         
     }
@@ -116,6 +116,24 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_products(request, id):
+    products = get_object_or_404(Product, pk=id)
+    form = ProductForm(request.POST or None, instance=products)
+    if form.is_valid() and request.method == 'POST':
+        form.save()
+        return redirect('main:show_main')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, "edit_products.html", context)
+
+def delete_products(request, id):
+    products = get_object_or_404(Product, pk=id)
+    products.delete()
+    return HttpResponseRedirect(reverse('main:show_main'))
 
 
 # def create_dosen(request):

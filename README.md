@@ -74,3 +74,35 @@ Bisa menyimpan data lebih banyak tanpa membebani browser
 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 --> Dalam menyelesaikan checklist yang diberikan, saya tidak hanya sekadar mengikuti instruksi dari tutorial, tetapi juga melengkapinya dengan penelusuran tambahan melalui dokumentasi resmi Django maupun referensi lainnya. Hal ini saya lakukan agar setiap proses, mulai dari pembuatan fitur registrasi, login, dan logout, penambahan akun dengan dummy data, penghubungan model Product dengan User, hingga penerapan session dan cookie* seperti last_login, dapat saya pahami secara menyeluruh. Dengan begitu, setiap langkah yang saya kerjakan tidak hanya bersifat meniru, melainkan benar-benar didasari pemahaman mengenai konsep yang melatarbelakanginya. Pendekatan ini membuat saya lebih mandiri dalam menyelesaikan checklist sekaligus lebih siap menghadapi variasi kasus serupa di luar contoh tutorial
 
+Tugas 5 
+1) Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+--> Dalam CSS, ketika beberapa selector diterapkan pada elemen HTML yang sama dan terdapat properti yang saling bertentangan, aturan prioritas akan menentukan mana yang diambil oleh browser. Urutan prioritas CSS dimulai dengan inline style, yang memiliki prioritas tertinggi. Inline style adalah gaya yang diterapkan langsung pada elemen HTML melalui atribut style. Gaya ini akan mengesampingkan gaya lainnya, kecuali jika ada penggunaan !important pada gaya lain. Setelah inline style, urutan prioritas berikutnya adalah internal style, yaitu gaya yang dideklarasikan di dalam tag <style> pada bagian <head> dokumen HTML. Internal style memiliki prioritas lebih tinggi dibandingkan dengan eksternal style, tetapi lebih rendah daripada inline style. Gaya internal ini akan mengoverride gaya dari file eksternal, kecuali jika gaya eksternal tersebut menggunakan !important. Terakhir, eksternal style yang dideklarasikan dalam file CSS terpisah dan dipanggil menggunakan tag <link> atau @import memiliki prioritas terendah. Meskipun sangat berguna untuk menerapkan gaya secara global, eksternal style akan diabaikan jika ada inline style atau internal style yang menerapkan aturan yang sama pada elemen tersebut. Namun, jika sebuah aturan dalam eksternal style menggunakan !important, maka gaya tersebut akan mengesampingkan aturan lainnya yang tidak menggunakan !important, meskipun berada pada urutan prioritas yang lebih rendah.
+
+2) Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!
+--> Responsive design adalah teknik dalam pengembangan aplikasi web yang memungkinkan tampilan situs menyesuaikan diri dengan ukuran layar perangkat yang digunakan. Dengan menggunakan desain responsif, elemen seperti teks, gambar, dan tata letak akan berubah sesuai dengan perangkat, baik itu desktop, tablet, atau ponsel, tanpa memerlukan zoom in atau zoom out. Hal ini membuat pengalaman pengguna lebih nyaman, karena pengunjung dapat mengakses situs dengan mudah dan tanpa kesulitan.
+
+Contoh aplikasi yang sudah menerapkan responsive design adalah Twitter yang memastikan pengguna dapat berbelanja atau membaca tweet dengan nyaman di berbagai perangkat. Sebaliknya, beberapa situs web pemerintah lokal belum menerapkan desain responsif, sehingga user harus zoom in atau scroll horizontal untuk melihat konten dengan jelas
+
+Pentingnya desain responsif terletak pada kenyamanan pengguna dan aksesibilitas. Dengan desain yang responsif aplikasi web bisa digunakan di berbagai perangkat, meningkatkan interaksi pengguna, dan membantu SEO agar lebih mudah ditemukan di mesin pencari.
+
+
+3) Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+--> Margin, border dan padding adalah properti CSS yang mengatur ruang di sekitar elemen HTML. Meskipun ketiganya berhubungan dengan ruang, mereka bekerja di tempat yang berbeda dalam struktur elemen Padding adalah ruang yang ada di dalam elemen, antara konten dan batas elemen (border). Padding memastikan konten tidak terlalu dekat dengan border, memberi ruang ekstra di dalam elemen. Border adalah garis yang mengelilingi elemen, di sekitar konten dan padding sehingga memberi batas fisik pada elemen dan bisa diubah warnanya, ketebalan, dan jenis garisnya. Margin adalah ruang di luar elemen, antara elemen dengan elemen lain di sekitarnya yang digunakan untuk memberi jarak antar elemen, menghindari elemen saling menempel
+
+.box {
+  margin: 100px 20px 50px 370px; / Margin dengan nilai atas, kanan, bawah, kiri /
+  width: 350px;
+  height: 50px;
+  font-size: 50px;
+  border: 10px solid red;  -->  Border 10px merah 
+  padding: 160px; --> Padding 160px di semua sisi 
+}
+
+4) Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+--> Untuk membuat layout dengan menggunakan Flexbox, kita menambahkan "display: flex" pada elemen untuk mendefinisikan penggunaan Flexbox. Kemudian, kita bisa menggunakan properti flex-direction untuk menentukan arah elemen, apakah dalam bentuk kolom atau baris. Flexbox sangat berguna untuk mengatur perataan dan posisi elemen-elemen kecil atau detail, dan cocok digunakan pada layout dengan satu dimensi, baik itu kolom atau baris
+
+Sementara itu, untuk membuat layout menggunakan CSS Grid, kita menambahkan "display: grid" pada elemen dan menggunakan properti grid-template-rows dan grid-template-columns untuk mengatur ukuran elemen, serta grid-gap untuk mengatur jarak antar elemen. CSS Grid sangat baik untuk mengatur layout yang melibatkan elemen-elemen besar seperti gambar, dan cocok digunakan untuk layout dengan dua dimensi, yaitu kolom dan baris
+
+
+5) Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+--> Berdasarkan alur checklist yang diberikan, untuk mengimplementasikan fungsionalitas seperti edit dan hapus produk, saya memulai dengan membuat views yang menangani kedua fungsi tersebut, dengan memanfaatkan form dan metode penghapusan objek produk. Selanjutnya, saya menyesuaikan tampilan halaman login, register, tambah produk, dan detail produk dengan menggunakan Tailwind CSS, untuk memastikan desainnya responsif dan menarik. Pada halaman daftar produk, saya menambahkan logika untuk menampilkan gambar dan pesan jika produk belum tersedia, serta menampilkan produk dalam bentuk card yang dilengkapi dengan tombol edit dan hapus. Saya juga mengimplementasikan navbar responsif yang akan menyesuaikan tampilannya di berbagai perangkat. Dengan demikian, aplikasi menjadi lebih fungsional dan responsif, memberikan pengalaman pengguna yang lebih baik. Saya menerapkan semua ini dengan memanfaatkan pengetahuan yang saya peroleh dari tutorial dan sumber eksternal, yang memungkinkan saya untuk mengembangkan aplikasi ini dengan pemahaman yang lebih mendalam tentang alur pengembangan dan fungsionalitas yang dibutuhkan
